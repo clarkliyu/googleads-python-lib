@@ -20,6 +20,7 @@ __author__ = 'Joseph Dilallo'
 
 import os
 import re
+import sys
 from setuptools import setup
 
 PACKAGES = ['googleads']
@@ -83,6 +84,10 @@ feedback for how we can improve them? Feel free to let us know on our
 `issue tracker <https://github.com/googleads/googleads-python-lib/issues>`_.
 """
 
+extra_params = {}
+if sys.version_info[0] == 3:
+  extra_params['use_2to3'] = True
+
 setup(name='googleads',
       version=GetVersion(),
       description='Google Ads Python Client Library',
@@ -94,4 +99,5 @@ setup(name='googleads',
       packages=PACKAGES,
       platforms='any',
       keywords='adwords adxbuyer dfp dfa google',
-      install_requires=DEPENDENCIES)
+      install_requires=DEPENDENCIES,
+      **extra_params)
